@@ -4,8 +4,8 @@ orbs:
   aws-cli: circleci/aws-cli@5.1.0
   aws-ecr: circleci/aws-ecr@9.3.2
 
-workflows:
-  publish_uat:
+jobs:
+  push_ecr:
     machine:
       image: ubuntu-2004:202111-02
     working_directory: ~/repo
@@ -17,3 +17,14 @@ workflows:
       - aws-ecr/build_and_push_image:
           repo: circleci-ecr-demo1
           tag: "${CIRCLE_SHA1}"      
+workflows:
+  version: 2
+  circle-ecr:
+    jobs:
+      - push_ecr:
+          context:
+            - aws-dev
+          filters:
+            branches:
+              only:
+                - main
