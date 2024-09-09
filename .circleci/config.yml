@@ -13,10 +13,3 @@ workflows:
           path: .
           repo: circleci-ecr-demo
           tag: "$CIRCLE_SHA1"
-
-      - aws-ecr/build-and-push-image:
-          create-repo: true
-          dockerfile: Dockerfile
-          path: .
-          repo: circleci-ecr-demo1
-          tag: "$CIRCLE_SHA1"
