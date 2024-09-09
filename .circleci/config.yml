@@ -19,7 +19,7 @@ aliases:
       root: ~/repo
       paths:
         - '*'
-jobs:
+workflows:
   build_and_push:
     <<: *docker-node
     <<: *workdir
@@ -38,7 +38,3 @@ jobs:
           path: .
           repo: circleci-ecr-demo-source
           tag: "${CIRCLE_SHA1}"
-
-workflows:
-  build_and_push_image:
-    - build_and_push
