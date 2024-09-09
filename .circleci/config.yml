@@ -1,16 +1,19 @@
 version: 2.1
 
 orbs:
-  aws-ecr: circleci/aws-ecr@8.1.3
+  aws-cli: circleci/aws-cli@5.1.0
+  aws-ecr: circleci/aws-ecr@9.3.2
 
 workflows:
-  build_and_push_image:
-    jobs:
+  publish_uat:
+    machine:
+      image: ubuntu-2004:202111-02
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
       - aws-ecr/ecr-login
-      - aws-ecr/build-and-push-image:
-          context: aws-dev
-          create-repo: false
-          dockerfile: Dockerfile
-          path: .
-          repo: circleci-ecr-demo
-          tag: "$CIRCLE_SHA1"
+      - aws-ecr/build_and_push_image:
+          repo: circleci-ecr-demo1
+          tag: "${CIRCLE_SHA1}"      
