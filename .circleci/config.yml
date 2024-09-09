@@ -31,7 +31,6 @@ jobs:
           command: |
             aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <AWS_ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com
       - aws-ecr/build-and-push-image:
-          context: aws-dev
           create-repo: true
           dockerfile: Dockerfile
           path: .
@@ -40,4 +39,6 @@ jobs:
 workflows:
   main:
     jobs:
-      - build_and_push
+      - build_and_push:
+        context: 
+          - aws-dev
