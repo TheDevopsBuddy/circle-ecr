@@ -14,8 +14,7 @@ jobs:
         - setup_remote_docker
         - run:
             name: Login to AWS ECR
-            command: |
-            aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 703060810297.dkr.ecr.us-east-1.amazonaws.com
+            command: aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 703060810297.dkr.ecr.us-east-1.amazonaws.com
       - aws-ecr/build-and-push-image:
           context: aws-dev
           create-repo: true
