@@ -9,6 +9,10 @@ aliases:
   - &docker-node
     docker:
       - image: cimg/node:18.20.4
+  
+  - &attach-workspace
+    attach_workspace:
+      at: ~/repo
 jobs:
   build_and_push:
     <<: *docker-node
