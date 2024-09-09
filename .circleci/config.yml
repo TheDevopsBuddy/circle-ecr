@@ -13,7 +13,6 @@ jobs:
       - checkout
       - attach_workspace:
           at: .
-      - aws-ecr/ecr-login
       - aws-ecr/build_and_push_image:
           repo: circleci-ecr-demo1
           tag: "${CIRCLE_SHA1}"      
