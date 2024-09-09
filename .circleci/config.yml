@@ -2,15 +2,24 @@ version: 2.1
 
 orbs:
   aws-ecr: circleci/aws-ecr@8.1.3
+aliases:
+  - &workdir
+    working_directory: ~/repo
 
+  - &docker-node
+    docker:
+      - image: cimg/node:18.20.4
 jobs:
   build_and_push:
-    docker:
-      image: circleci/python:3.8  # You can use another image, but ensure Docker is installed
-    working_directory: ~/repo
+    <<: *docker-node
+    <<: *workdir
+    steps:
+      - *attach-workspace
+      - setup_remote_docker:
+          version: 19.03.13
     steps:
       - checkout  # Checkout the source code
-      - setup_remote_docker  # Enables the use of Docker commands
+      - setup_remote_docker:  # Enables the use of Docker commands
       - run:
           name: Login to AWS ECR
           command: |
