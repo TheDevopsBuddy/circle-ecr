@@ -25,10 +25,7 @@ jobs:
     <<: *workdir
     steps:
       - *attach-workspace
-      - setup_remote_docker:
-          version: 19.03.13
       - checkout  # Checkout the source code
-      - setup_remote_docker:  # Enables the use of Docker commands
       - run:
           name: Login to AWS ECR
           command: |
