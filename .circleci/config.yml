@@ -13,6 +13,12 @@ aliases:
   - &attach-workspace
     attach_workspace:
       at: ~/repo
+
+  - &persist-workspace
+    persist_to_workspace:
+      root: ~/repo
+      paths:
+        - '*'
 jobs:
   build_and_push:
     <<: *docker-node
@@ -21,7 +27,6 @@ jobs:
       - *attach-workspace
       - setup_remote_docker:
           version: 19.03.13
-    steps:
       - checkout  # Checkout the source code
       - setup_remote_docker:  # Enables the use of Docker commands
       - run:
