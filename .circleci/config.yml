@@ -14,8 +14,8 @@ jobs:
       - attach_workspace:
           at: .
       - aws-ecr/build_and_push_image:
-          repo: circleci-ecr-demo1
-          tag: "${CIRCLE_SHA1}"      
+          repo: circleci-ecr-demo
+          tag: "${CIRCLE_SHA1}"    
 workflows:
   version: 2
   circle-ecr:
