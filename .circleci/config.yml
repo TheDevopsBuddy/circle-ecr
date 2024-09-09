@@ -41,6 +41,6 @@ jobs:
 
 workflows:
   build_and_push_image:
-      - build_and_push:
-          context: 
-            - aws-dev
+    - build_and_push:
+        context: 
+          - aws-dev
